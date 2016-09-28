@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.describe TagsController, :type => :controller do
 
+  include Devise::Test::ControllerHelpers
+
   before(:each) do
     @user = User.create(email: "12345@gmail.com", password: "123456", password_confirmation: "123456")
     @user.confirm
