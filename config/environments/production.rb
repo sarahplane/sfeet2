@@ -85,7 +85,7 @@ Rails.application.configure do
 
   first_inbox = JSON.parse(response)[0]
 
-  config.action_mailer.default_url_options = { :host => 'sfeet.heroku.com' }
+  config.action_mailer.default_url_options = { :host => 'sfeet2.heroku.com' }
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
