@@ -81,7 +81,7 @@ Rails.application.configure do
   require 'rest_client'
   require 'json'
 
-  response = RestClient.get "https://mailtrap.io/api/v1/inboxes.json?api_token=d9f1dbe5fab0fd08e9105256bf911cbd"
+  response = RestClient.get "https://mailtrap.io/api/v1/inboxes.json?api_token=6703039303a2fb4f20ff19eb9227a638"
 
   first_inbox = JSON.parse(response)[0]
 
