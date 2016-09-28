@@ -29,7 +29,7 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
@@ -76,4 +76,24 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  require 'rubygems' if RUBY_VERSION < '1.9'
+  require 'rest_client'
+  require 'json'
+
+  response = RestClient.get "https://mailtrap.io/api/v1/inboxes.json?api_token=d9f1dbe5fab0fd08e9105256bf911cbd"
+
+  first_inbox = JSON.parse(response)[0]
+
+  config.action_mailer.default_url_options = { :host => 'sfeet.heroku.com' }
+
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+  :user_name => 'a4208d08c2b425',
+  :password => '04928f878a9bcd',
+  :address => 'mailtrap.io',
+  :domain => 'mailtrap.io',
+  :port => '2525',
+  :authentication => :cram_md5
+  }
 end
