@@ -3,25 +3,25 @@
     .row-header
       .col-md-10.col-md-offset-1
         %h2
-          Products Listing
+          = "#{@tag.name.capitalize}"
+        = link_to tag_path(@tag), method: :delete, data: {confirm: "Are you sure you want to delete #{@tag.name}?"} do
+          %i.glyphicon.glyphicon-remove
         %h5.margin-above
           Tags:
       .col-md-10.col-md-offset-1.col-count-7
         - @tags_sorted.each do |tag|
           = link_to "#{tag.name.capitalize}", tag_path(tag)
           %br
-    .padding-left.margin-above
-    Filters ($ index & product features (GF, GMO etc)) will go here.
 
   .row
     .col-md-7.col-md-offset-1.padding-above
-      - @products.each do |product|
+      - @tag.products.each do |product|
         .panel.panel-default
           .panel-heading
             %h5
               = link_to "#{product.name}", product
           .panel-body
-            .margin-below
+            .add-margin-below
               - case product.price
                 - when "1"
                   = "$"

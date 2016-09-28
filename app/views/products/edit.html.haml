@@ -1,0 +1,9 @@
+.container-fluid
+  .row.row-centered.padding-above
+    %h2
+      = "Edit:  #{@product.name}"
+
+    = render partial: 'form', locals: {product: @product, price: @price}
+
+    %div.button.padding-above
+      = link_to 'Cancel', products_path

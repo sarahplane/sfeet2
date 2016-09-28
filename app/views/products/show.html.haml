@@ -1,0 +1,20 @@
+.container-fluid
+  .row.gray.row-header
+    .col-md-10.col-md-offset-1
+      %h2
+        = "#{@product.name}"
+      = link_to edit_product_path(@product), class: "margin-right" do
+        %i.glyphicon.glyphicon-pencil
+      = link_to product_path(@product), method: :delete, data: {confirm: "Are you sure you want to delete #{@product.name}?"} do
+        %i.glyphicon.glyphicon-remove
+      .margin-above
+        = "#{@price_range}"
+        &#xb7;
+        - @product.tags.each do |tag|
+          = link_to "#{tag.name.capitalize} |", tag_path(tag)
+  .row
+    .col-md-7.col-md-offset-1
+    .col-md-3.padding-above
+      .thumbnail.thumbnail-thick-boarder
+        .caption
+          %h3 Product Features

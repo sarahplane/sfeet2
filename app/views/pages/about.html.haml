@@ -1,0 +1,26 @@
+.container-fluid
+  .row
+    .col-sm-3.col-md-3.text-left
+      .list-group.padding-above
+        .list-group-item.active
+          About Sfeet
+        = link_to "About", about_path, class: "list-group-item"
+        = link_to "FAQ", faq_path, class: "list-group-item"
+        = link_to "Help Center", help_center_path, class: "list-group-item"
+        = link_to "News", news_path, class: "list-group-item"
+        = link_to "Sfeet's Black List", black_list_path, class: "list-group-item"
+
+
+    .col-sm-7.col-md-7.text-left
+      %h1
+        About Sfeet
+      %h5
+        Sfeet, short for “Smaller Feet”, is a variation of ‘Reduced Footprint’.
+
+      The concept of sfeet is to provide a place for consumers to enhance their
+      decision making process to reduce their impact on the environment, protect their bodies,
+      and ensure their purchases are not negatively impacting others
+      (people and animals alike). Sfeet accomplishes this by providing a location for
+      users to share their information about a product’s sustainability standards,
+      the quality of the product, and other key features regarding the product, to help
+      inform other users about a product prior to purchasing that product.

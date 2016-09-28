@@ -1,0 +1,18 @@
+.container-fluid
+  .row
+    .col-sm-3.col-md-3.text-left
+      .list-group.padding-above
+        .list-group-item.active
+          About Sfeet
+        = link_to "About", about_path, class: "list-group-item"
+        = link_to "FAQ", faq_path, class: "list-group-item"
+        = link_to "Help Center", help_center_path, class: "list-group-item"
+        = link_to "News", news_path, class: "list-group-item"
+        = link_to "Sfeet's Black List", black_list_path, class: "list-group-item"
+
+    .col-sm-7.col-md-7.text-left
+      %h1
+        FAQ
+
+      Some of the most common questions asked by users are answered here. Don't see your answer?
+      Send us a message using our Contact Us form.
