@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
   resources :products
 
-  root 'products#index'
+  controller :pages do
+    get :home
+    get :about
+    get :faq
+    get :help_center
+    get :news
+    get :black_list
+  end
+
+  root 'pages#home'
 end
