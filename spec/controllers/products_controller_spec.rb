@@ -40,7 +40,7 @@ RSpec.describe ProductsController, :type => :controller do
     end
 
     it "raises an error if missing params" do
-      product1 = { product: {name: nil}}
+      product1 = {product: {name: nil}}
 
       expect do
         post :create, product

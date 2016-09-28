@@ -10,38 +10,41 @@
         - @tags_sorted.each do |tag|
           = link_to "#{tag.name.capitalize}", tag_path(tag)
           %br
-    .padding-left.margin-above
-    Filters ($ index & product features (GF, GMO etc)) will go here.
 
   .row
     .col-md-7.col-md-offset-1.padding-above
       - @products.each do |product|
         .panel.panel-default
           .panel-heading
-            %h5
-              = link_to "#{product.name}", product
-          .panel-body
-            .margin-below
-              - case product.price
-                - when "1"
-                  = "$"
-                - when "2"
-                  = "$$"
-                - when "3"
-                  = "$$$"
-                - when "4"
-                  = "$$$$"
-                - when "5"
-                  = "$$$$$"
-                - when "6"
-                  = "$$$$$$"
-                - when "7"
-                  = "$$$$$$$"
-            .padding-above
+            .row.margin-left.margin-left-less
+              %h5
+                = link_to "#{product.name}", product
+            .row.margin-left.margin-left-less
+              .margin-below
+                - case product.price
+                  - when "1"
+                    = "$"
+                  - when "2"
+                    = "$$"
+                  - when "3"
+                    = "$$$"
+                  - when "4"
+                    = "$$$$"
+                  - when "5"
+                    = "$$$$$"
+                  - when "6"
+                    = "$$$$$$"
+                  - when "7"
+                    = "$$$$$$$"
+                &#xb7;
+                Category
+              .margin-left.margin-left-less
               = link_to edit_product_path(product), class: "margin-right" do
                 %i.glyphicon.glyphicon-pencil
               = link_to product_path(product), method: :delete, data: {confirm: "Are you sure you want to delete #{product.name}?"} do
                 %i.glyphicon.glyphicon-remove
+          .panel-body
+            Customer Review Here
 
 
     .col-md-3.padding-above

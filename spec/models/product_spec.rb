@@ -9,16 +9,16 @@ RSpec.describe Product, type: :model do
 
   context "validation" do
 
-    let(:product){Product.create(name: "Some Product", price: "3")}
-    let(:tags){['yummy item', 'snackaroo']}
-
     it "requires a unique name" do
-      product
+      product1 = Product.create(name: "Some Product", price: "3")
 
-      expect(@product.valid?).to eq true
+      expect(product1.valid?).to_not eq true
     end
 
     it "prevents name from being too short" do
+      product1 = Product.create(name: "T", price: "1")
+
+      expect(product1.valid?).to_not eq true
     end
   end
 

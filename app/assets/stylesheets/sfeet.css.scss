@@ -87,6 +87,10 @@ $secondary-text: $green;
 
 .margin-left {
   margin-left: 2em;
+
+  &.margin-left-less {
+    margin-left: .5em;
+  }
 }
 
 .margin-right {
@@ -96,7 +100,7 @@ $secondary-text: $green;
 .margin-above {
   margin-top: .6em;
 
-  .margin-above-more{
+  &.margin-above-more{
     margin-top: 2em;
   }
 }
