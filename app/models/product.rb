@@ -1,6 +1,7 @@
 class Product < ActiveRecord::Base
   has_many :taggings
   has_many :tags, through: :taggings
+  belongs_to :category
 
   validates :name, presence: true, length: { minimum: 2 }, uniqueness: true
 
@@ -16,10 +17,6 @@ class Product < ActiveRecord::Base
     end
 
     self.tags = new_or_found_tags
-  end
-
-  def price_range
-    '$' * price.to_i
   end
 
 end

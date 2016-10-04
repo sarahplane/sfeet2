@@ -1,0 +1,14 @@
+.container-fluid
+  .row.gray
+    .row-header
+      .col-md-10.col-md-offset-1
+        %h2
+          Categories Inventory
+  .row
+    .col-md-7.col-md-offset-1.padding-above
+      - @categories.each do |category|
+        .panel.panel-default
+          .panel-heading
+            .row.margin-left.margin-left-less
+              %h5
+                = category.name

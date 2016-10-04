@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:index, :show]
+  #need to add before action for administrator for destroy, update, edit, create
+  helper ProductsHelper
 
   def index
     @products = Product.all
