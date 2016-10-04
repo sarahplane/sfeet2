@@ -44,7 +44,7 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
-  gem 'rest-client'
+  gem 'rest-client' #for mailtrap.io
 end
 
 group :development, :test do

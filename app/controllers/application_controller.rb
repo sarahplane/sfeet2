@@ -19,5 +19,11 @@ class ApplicationController < ActionController::Base
       store_location_for(:user, request.fullpath)
     end
   end
+  #refactor using (this way introduces a little code smell!)
+
+  #can try refactoring with
+  #def after_sign_in_path_for(resource)
+  #  session[:previous_url] || root_path
+  #end
 
 end

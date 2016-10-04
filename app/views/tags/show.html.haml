@@ -9,7 +9,7 @@
         %h5.margin-above
           Tags:
       .col-md-10.col-md-offset-1.col-count-7
-        - @tags_sorted.each do |tag|
+        - @tags.sorted.each do |tag|
           = link_to "#{tag.name.capitalize}", tag_path(tag)
           %br
 

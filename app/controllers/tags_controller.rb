@@ -3,8 +3,8 @@ class TagsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
 
   def show
-    @tags_sorted = Tag.order("tags.name asc")
     @products = Product.all
+    @tags = Tag.all
   end
 
   def destroy

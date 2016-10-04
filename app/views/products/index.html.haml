@@ -7,7 +7,7 @@
         %h5.margin-above
           Tags:
       .col-md-10.col-md-offset-1.col-count-7
-        - @tags_sorted.each do |tag|
+        - @tags.sorted.each do |tag|
           = link_to "#{tag.name.capitalize}", tag_path(tag)
           %br
 
@@ -21,21 +21,7 @@
                 = link_to "#{product.name}", product
             .row.margin-left.margin-left-less
               .margin-below
-                - case product.price
-                  - when "1"
-                    = "$"
-                  - when "2"
-                    = "$$"
-                  - when "3"
-                    = "$$$"
-                  - when "4"
-                    = "$$$$"
-                  - when "5"
-                    = "$$$$$"
-                  - when "6"
-                    = "$$$$$$"
-                  - when "7"
-                    = "$$$$$$$"
+                = product.price_range
                 &#xb7;
                 Category
               .margin-left.margin-left-less

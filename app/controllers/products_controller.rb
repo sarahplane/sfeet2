@@ -5,11 +5,10 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
     @tags = Tag.all
-    @tags_sorted = Tag.order("tags.name asc")
   end
 
   def show
-    price_range
+    @tags = Tag.all
   end
 
   def new
@@ -57,27 +56,6 @@ private
 
   def set_product
     @product = Product.find(params[:id])
-  end
-
-  def price_range
-    case @product.price
-    when "1"
-      @price_range = "$"
-    when "2"
-      @price_range = "$$"
-    when "3"
-      @price_range = "$$$"
-    when "4"
-      @price_range = "$$$$"
-    when "5"
-      @price_range = "$$$$$"
-    when "6"
-      @price_range = "$$$$$$"
-    when "7"
-      @price_range = "$$$$$$$"
-    else
-      @price_range = ""
-    end
   end
 
 end

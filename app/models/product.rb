@@ -18,4 +18,8 @@ class Product < ActiveRecord::Base
     self.tags = new_or_found_tags
   end
 
+  def price_range
+    '$' * price.to_i
+  end
+
 end
