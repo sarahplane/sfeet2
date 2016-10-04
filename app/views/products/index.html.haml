@@ -24,7 +24,7 @@
                 = price_range(product.price)
                 &#xb7;
                 - if product.category.nil? == false
-                  = product.category.name
+                  = link_to "#{product.category.name}", category_path(product.category)
               .margin-left.margin-left-less
               = link_to edit_product_path(product), class: "margin-right" do
                 %i.glyphicon.glyphicon-pencil

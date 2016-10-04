@@ -1,21 +1,19 @@
 .container-fluid
-  .row.gray
-    .row-header
-      .col-md-10.col-md-offset-1
-        %h2
-          = "#{@tag.name.capitalize}"
-        = link_to tag_path(@tag), method: :delete, data: {confirm: "Are you sure you want to delete #{@tag.name}?"} do
-          %i.glyphicon.glyphicon-remove
-        %h5.margin-above
-          Tags:
-      .col-md-10.col-md-offset-1.col-count-7
-        - @tags.sorted.each do |tag|
-          = link_to "#{tag.name.capitalize}", tag_path(tag)
-          %br
+  .row.gray.row-header
+    .col-md-10.col-md-offset-1
+      %h2
+        = "#{@category.name}"
+      %h5.margin-above
+        Categories:
+    .col-md-10.col-md-offset-1.col-count-6
+      - @categories.sorted.each do |category|
+        = link_to "#{category.name}", category_path(category)
+        %br
+
 
   .row
     .col-md-7.col-md-offset-1.padding-above
-      - @tag.products.each do |product|
+      - @category.products.each do |product|
         .panel.panel-default
           .panel-heading
             .row.margin-left.margin-left-less
@@ -26,7 +24,7 @@
                 = price_range(product.price)
                 &#xb7;
                 - if product.category.nil? == false
-                  = link_to product.category.name, category_path(product.category)
+                  = link_to "#{product.category.name}", category_path(product.category)
               .margin-left.margin-left-less
               = link_to edit_product_path(product), class: "margin-right" do
                 %i.glyphicon.glyphicon-pencil

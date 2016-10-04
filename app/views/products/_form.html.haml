@@ -9,31 +9,11 @@
     = f.text_field :tag_list, placeholder: "Tags (chips, boxed meals, snacks)"
 
   .margin-above
-    .inline
-      = f.radio_button(:price, "1")
-      %br/
-      = label_tag(:price_1, "$0-$5")
-    .inline.margin-left
-      = f.radio_button(:price, "2")
-      %br/
-      = label_tag(:price_2, "$5-$10")
-    .inline.margin-left
-      = f.radio_button(:price, "3")
-      %br/
-      = label_tag(:price_3, "$10-$15")
-    .inline.margin-left
-      = f.radio_button(:price, "4")
-      %br/
-      = label_tag(:price_4, "$15-$20")
-    .inline.margin-left
-      = f.radio_button(:price, "5")
-      %br/
-      = label_tag(:price_5, "$20-$25")
-    .inline.margin-left
-      = f.radio_button(:price, "6")
-      %br/
-      = label_tag(:price_6, "$25+")
-
+    - (1..4).each do |i|
+      .inline.margin-sides
+        = f.radio_button(:price, i.to_s)
+        %br/
+        =label_tag(price_label(i))
 
   .btn.btn-primary.margin-above
     = f.submit
