@@ -1,4 +1,7 @@
 = form_for(product) do |f|
+  .dropdown.margin-below
+    = f.collection_select(:category_id, Category.all, :id, :name)
+
   .user-field.margin-below
     = f.text_field :name, placeholder: "Product (Annie's Mac & Cheese)"
 
@@ -29,11 +32,8 @@
     .inline.margin-left
       = f.radio_button(:price, "6")
       %br/
-      = label_tag(:price_6, "$25-$30")
-    .inline.margin-left
-      = f.radio_button(:price, "7")
-      %br/
-      = label_tag(:price_7, "$30+")
+      = label_tag(:price_6, "$25+")
+
 
   .btn.btn-primary.margin-above
     = f.submit

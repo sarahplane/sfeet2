@@ -135,3 +135,11 @@ h1,h2,h3,h4,h5,h6 {
   column-gap: 10px;
   min-height: 100px;
 }
+
+select#product_category_id{
+  width: 250px;
+  background-color: #fafafa;
+  border: 1px solid #bbb;
+  border-radius: 3.5px;
+  padding: .4em;
+}
