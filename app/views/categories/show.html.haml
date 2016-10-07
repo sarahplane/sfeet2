@@ -9,7 +9,14 @@
       - @categories.sorted.each do |category|
         = link_to "#{category.name}", category_path(category)
         %br
-
+  .row.gray
+    .col-md-10.col-md-offset-1
+      %h5.margin-above
+        Tags:
+    .col-md-10.col-md-offset-1.col-count-7
+      - @tags.sorted.each do |tag|
+        = link_to "#{tag.name.capitalize}", tag_path(tag)
+        %br
 
   .row
     .col-md-7.col-md-offset-1.padding-above

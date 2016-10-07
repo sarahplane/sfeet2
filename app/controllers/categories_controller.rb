@@ -8,6 +8,7 @@ class CategoriesController < ApplicationController
 
   def show
     @categories = Category.all
+    @tags = Tag.all
   end
 
   def new
