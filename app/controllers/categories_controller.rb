@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  #need to add before_action for administrator for all but show
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @categories = Category.all
