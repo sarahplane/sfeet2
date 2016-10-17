@@ -1,0 +1,59 @@
+.container-fluid
+  .row.gray
+    .row-header
+      .col-md-10.col-md-offset-1
+        %h2
+          Products Listing
+        %h5.margin-above
+          Tags:
+      .col-md-10.col-md-offset-1.col-count-7
+        - @tags.sorted.each do |tag|
+          = link_to "#{tag.name.capitalize}", tag_path(tag)
+          %br
+
+
+- if @products.present?
+  .row
+    .col-md-7.col-md-offset-1.padding-above
+      - @products.each do |product|
+        .panel.panel-default
+          .panel-heading
+            .row.margin-left.margin-left-less
+              %h5
+                = link_to "#{product.name}", product
+            .row.margin-left.margin-left-less
+              .margin-below
+                = price_range(product.price)
+                &#xb7;
+                - if product.category.nil? == false
+                  = link_to "#{product.category.name}", category_path(product.category)
+              .margin-left.margin-left-less
+              = link_to edit_product_path(product), class: "margin-right" do
+                %i.glyphicon.glyphicon-pencil
+              = link_to product_path(product), method: :delete, data: {confirm: "Are you sure you want to delete #{product.name}?"} do
+                %i.glyphicon.glyphicon-remove
+          .panel-body
+            Customer Review Here
+
+
+    .col-md-3.padding-above
+      .thumbnail.thumbnail-thick-boarder
+        .caption
+          %h3 Add a Product
+          Don't see what you are looking for? Add a new product!
+          .padding-below
+          = link_to 'Add Product', new_product_path, class: "btn btn-primary"
+
+- else
+  .row
+    .col-sm-7.col-md-offset-1.padding-above.text-left
+      %h2
+        There are no products containing the term(s) #{params[:search]}.
+
+    .col-md-3.padding-above
+      .thumbnail.thumbnail-thick-boarder
+        .caption
+          %h3 Add a Product
+          Don't see what you are looking for? Add a new product!
+          .padding-below
+          = link_to 'Add Product', new_product_path, class: "btn btn-primary"

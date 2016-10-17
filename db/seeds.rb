@@ -9,12 +9,11 @@
 require 'faker'
 
 old_products_count = Product.count
-categories = Category.all
-tags = Tag.all
+categories = Category.all.id
 
 num_to_add = [0, (50 - Product.count)].max
 num_to_add.times do
-  product = Product.create(name: Faker::Hipster.words(2).join(' '), price: rand(4)+1, tag_list: tags.sample, category_id: categories.sample)
+  product = Product.create(name: Faker::Hipster.words(2).join(' '), price: rand(4)+1, category_id: categories.sample)
 end
 
 puts "Added #{num_to_add} Products to the #{old_products_count} Products that were already there."

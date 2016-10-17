@@ -7,6 +7,12 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
     @tags = Tag.all
+    if params[:search]
+      @products = Product.search(params[:search]).order("created_at DESC")
+    else
+      @products = Product.all.order('created_at DESC')
+    end
+    render :template => "products/search", :locals => {:products => @products}
   end
 
   def show
@@ -50,6 +56,7 @@ class ProductsController < ApplicationController
     end
     redirect_to products_path
   end
+
 
 private
   def product_params

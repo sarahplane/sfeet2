@@ -5,6 +5,12 @@ class Product < ActiveRecord::Base
 
   validates :name, presence: true, length: { minimum: 2 }, uniqueness: true
 
+
+
+  def self.search(search)
+    where("name LIKE ?", "%#{search}%")
+  end
+
   def tag_list
     tags.collect{|tag| tag.name}.join(', ')
   end
