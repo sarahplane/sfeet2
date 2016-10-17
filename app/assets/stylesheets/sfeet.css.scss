@@ -11,6 +11,7 @@ $nav-secondary-text: $green;
 $nav-accent-color: $off-black;
 $primary-text: $dark-blue;
 $secondary-text: $green;
+$accent-text: $off-white;
 
 .thumbnail{
   &.thumbnail-no-border {
@@ -66,16 +67,30 @@ $secondary-text: $green;
     border: none;
     outline: none;
   }
+
+  &.btn-default {
+    input[type="button" i],
+    input[type="submit" i],
+    input[type="reset" i],
+    input[type="file" i]::-webkit-file-upload-button,
+    button {
+      padding: 0;
+      color: $primary-text;
+    }
+  }
+
+  &.btn-primary {
+    input[type="button" i],
+    input[type="submit" i],
+    input[type="reset" i],
+    input[type="file" i]::-webkit-file-upload-button,
+    button {
+      padding: 0;
+      color: $accent-text;
+    }
+  }
 }
 
-input[type="button" i],
-input[type="submit" i],
-input[type="reset" i],
-input[type="file" i]::-webkit-file-upload-button,
-button {
-  padding: 0;
-  color: $primary-text;
-}
 
 .glyphicon {
   color: black;

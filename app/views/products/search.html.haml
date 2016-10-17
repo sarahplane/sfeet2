@@ -19,8 +19,16 @@
         .panel.panel-default
           .panel-heading
             .row.margin-left.margin-left-less
-              %h5
+              %h4
                 = link_to "#{product.name}", product
+              %br
+              - if product.reviews.empty? == true
+                - 5.times do |empty_star|
+                  .glyphicon.glyphicon-star-empty
+                No Reviews
+              -else
+                - rating_average(product.reviews).to_i.times do |star|
+                  .glyphicon.glyphicon-star
             .row.margin-left.margin-left-less
               .margin-below
                 = price_range(product.price)
@@ -33,12 +41,11 @@
               = link_to product_path(product), method: :delete, data: {confirm: "Are you sure you want to delete #{product.name}?"} do
                 %i.glyphicon.glyphicon-remove
           .panel-body
-            - if product.reviews.nil? == false
-              - product.reviews.each do |review|
-                - review.rating.to_i.times do |star|
-                  .glyphicon.glyphicon-star
-                %br
-                = review.comment
+            - if product.reviews.empty? == true
+              %h5
+                Be the first to review this product.
+            -else
+              = review_sample(product)
 
 
     .col-md-3.padding-above

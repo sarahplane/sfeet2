@@ -3,17 +3,43 @@
     .col-md-10.col-md-offset-1
       %h2
         = "#{@product.name}"
-      = link_to edit_product_path(@product), class: "margin-right" do
-        %i.glyphicon.glyphicon-pencil
-      = link_to product_path(@product), method: :delete, data: {confirm: "Are you sure you want to delete #{@product.name}?"} do
-        %i.glyphicon.glyphicon-remove
+      .margin-above
+        - if @product.reviews.empty? == true
+          - 5.times do |empty_star|
+            .glyphicon.glyphicon-star-empty
+          No Reviews
+        -else
+          - rating_average(@product.reviews).to_i.times do |star|
+            .glyphicon.glyphicon-star
       .margin-above
         = price_range(@product.price)
         &#xb7;
         - @product.tags.sorted.each do |tag|
           = link_to "#{tag.name.capitalize} |", tag_path(tag)
+        = link_to edit_product_path(@product), class: "margin-left margin-right" do
+          %i.glyphicon.glyphicon-pencil
+        = link_to product_path(@product), method: :delete, data: {confirm: "Are you sure you want to delete #{@product.name}?"} do
+          %i.glyphicon.glyphicon-remove
+
   .row
-    .col-md-7.col-md-offset-1
+    .col-md-7.col-md-offset-1.padding-above
+      - if @product.reviews.nil? == false
+        - @product.reviews.each do |review|
+          .panel.panel-default
+            .panel-heading
+              .row.margin-left.margin-left-less
+                %h5
+                  = "#{review.user.email}"
+              .row.margin-left.margin-left-less
+                .margin-below
+                  - review.rating.to_i.times do |star|
+                    .glyphicon.glyphicon-star
+            .panel-body
+              .row.margin-left.margin-left-less
+                .margin-below
+                  %br
+                  = review.comment
+
     .col-md-3.padding-above
       .thumbnail.thumbnail-thick-boarder
         .caption
