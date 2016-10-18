@@ -30,6 +30,7 @@
               .row.margin-left.margin-left-less
                 %h5
                   = "#{review.user.email}"
+                //  = "#{review.user}"
               .row.margin-left.margin-left-less
                 .margin-below
                   - review.rating.to_i.times do |star|
@@ -39,6 +40,16 @@
                 .margin-below
                   %br
                   = review.comment
+  .row
+    .col-md-7.col-md-offset-1.padding-above
+      .panel.panel-default
+        .panel-heading
+          .row.margin-left.margin-left-less
+            %h4
+              Review Product
+        .panel-body
+          .row.margin-left.margin-left-less
+            = render partial: 'reviews/form', locals: {parent: @product, review: @review}
 
     .col-md-3.padding-above
       .thumbnail.thumbnail-thick-boarder

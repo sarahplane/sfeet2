@@ -1,0 +1,34 @@
+= form_for [@product, @review] do |f|
+
+  .margin-below
+    How would you rate this product?
+
+  .margin-below
+    .btn-group{"data-toggle" => "buttons"}
+      - (1..5).each do |i|
+        %label.btn.btn-primary
+          %input#option2{:autocomplete => "off", :name => "options", :type => "radio"}
+          Test
+          = f.radio_button(:rating, i.to_s)
+
+
+  .margin-below
+    Add a Comment:
+
+  .user-field.margin-below
+    = f.text_area :comment, placeholder: "Add Comment"
+
+  .btn.btn-primary.margin-above
+    = f.submit
+
+
+
+  %label.btn.btn-primary.active
+    %input#option1{:autocomplete => "off", :checked => "checked", :name => "options", :type => "radio"}/
+    Radio 1 (preselected)
+  %label.btn.btn-primary
+    %input#option2{:autocomplete => "off", :name => "options", :type => "radio"}/
+    Radio 2
+  %label.btn.btn-primary
+    %input#option3{:autocomplete => "off", :name => "options", :type => "radio"}/
+    Radio 3
