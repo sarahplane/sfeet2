@@ -1,4 +1,4 @@
-= form_for [@product, @review] do |f|
+= form_for [@product, @user, @review] do |f|
 
   .margin-below
     How would you rate this product?
@@ -8,7 +8,7 @@
       - (1..5).each do |i|
         %label.btn.btn-primary
           %input#option2{:autocomplete => "off", :name => "options", :type => "radio"}
-          Test
+          %i.glyphicon.glyphicon-star
           = f.radio_button(:rating, i.to_s)
 
 
@@ -20,15 +20,3 @@
 
   .btn.btn-primary.margin-above
     = f.submit
-
-
-
-  %label.btn.btn-primary.active
-    %input#option1{:autocomplete => "off", :checked => "checked", :name => "options", :type => "radio"}/
-    Radio 1 (preselected)
-  %label.btn.btn-primary
-    %input#option2{:autocomplete => "off", :name => "options", :type => "radio"}/
-    Radio 2
-  %label.btn.btn-primary
-    %input#option3{:autocomplete => "off", :name => "options", :type => "radio"}/
-    Radio 3
