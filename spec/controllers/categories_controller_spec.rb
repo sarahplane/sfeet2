@@ -4,40 +4,32 @@ RSpec.describe CategoriesController, :type => :controller do
 
   include Devise::Test::ControllerHelpers
 
-  before(:each) do
-    @user = User.create(email: "12345@gmail.com", password: "123456", password_confirmation: "123456")
-    @user.confirm
-    @user.save
-    sign_in @user
-  end
-
+  let(:admin){User.create(email: "user@user.com", password: "123456", admin: true, password_confirmation: "123456", confirmed_at: Time.now)}
+  let(:user){User.create(email: "user2@user.com", password: "123456", admin: false, password_confirmation: "123456", confirmed_at: Time.now)}
+  let(:product1) {Product.create(name: "Product1", price: "3")}
   let(:category1){Category.create(name: "Cat1")}
 
   describe "GET #index" do
     it "succeeds" do
+      sign_in admin
       get :index
 
       expect(response).to be_success
     end
   end
 
-  describe "GET #new" do
-    it "redirects to sign in if you are signed out" do
-      sign_out @user
-      get :new
-
-      expect(response).to redirect_to new_user_session_path
-    end
-  end
 
   describe "POST #create" do
-    subject(:creation) {post :create, category: {name: 'Cat1'}}
+    subject(:creation) {post :create, category: {name: 'Cat2'}}
 
     it "successfully creates a category" do
+      sign_in admin
+
       expect{creation}.to change{Category.count}.by(1)
     end
 
     it "raises an error if missing params" do
+      sign_in admin
       nocat = {category: {name: nil}}
 
       expect do
@@ -49,7 +41,8 @@ RSpec.describe CategoriesController, :type => :controller do
 
   describe "PUT #update" do
 
-    it "successfully updates changed to category" do
+    it "successfully updates change to category" do
+      sign_in admin
       put :update, :id => category1.id, category: {name: "CatChange"}
       category1.reload
 
@@ -59,7 +52,8 @@ RSpec.describe CategoriesController, :type => :controller do
 
   describe "DELETE #destroy" do
     it "successfully deletes a Category" do
-      delete :destroy, :id => category1.id, method: :delete
+      sign_in admin
+      delete :destroy, :id => category1.id, format: 'js'
 
       expect(Category.count).to eq 0
     end

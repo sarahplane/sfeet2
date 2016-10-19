@@ -5,7 +5,6 @@ module ProductsHelper
 
   def review_sample(product)
     sample = product.reviews.sample
-  #  "#{sample.user} - #{sample.comment}"
     "#{sample.user.email} - #{sample.comment}"
   end
 end
