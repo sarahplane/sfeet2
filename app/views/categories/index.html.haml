@@ -7,8 +7,26 @@
   .row
     .col-md-7.col-md-offset-1.padding-above
       - @categories.each do |category|
-        .panel.panel-default
-          .panel-heading
-            .row.margin-left.margin-left-less
-              %h5
-                = category.name
+        %div{id: "category-row-#{category.id}"}
+          .panel.panel-default
+            .panel-heading
+              .row.margin-left.margin-left-less
+                %h5
+                  = category.name
+                .margin-left.margin-left-less
+                = link_to edit_category_path(category), class: "margin-right" do
+                  %i.glyphicon.glyphicon-pencil
+
+                = link_to category_path(category), method: :delete, data: {confirm: "Are you sure you want to delete #{category.name}?"}, remote: true do
+                  %i.glyphicon.glyphicon-remove
+
+  .row
+    .col-md-7.col-md-offset-1.padding-above
+      .panel.panel-default
+        .panel-heading
+          .row.margin-left.margin-left-less
+            %h4
+              Create New Category
+            = form_for(@category) do |f|
+              .user-field.margin-below
+                = f.text_field :name, placeholder: "Category Name (Toys, Food)"

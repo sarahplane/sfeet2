@@ -2,6 +2,17 @@
   .row
     .col-sm-6.col-md-4.text-center.padding-above
       .thumbnail.thumbnail-no-border
+        %img{:alt => "Home Feature", :src => "assets/home_feature"}/
+      .thumbnail.thumbnail-no-border
+        .caption
+          %h2 Browse By Category
+          - Category.all.each do |category|
+            = link_to "#{category.name}", category_path(category), class: "btn btn-primary margin-below"
+
+
+
+    .col-sm-6.col-md-4.text-center.padding-above
+      .thumbnail.thumbnail-no-border
         %img{:alt => "Home Browse", :src => "assets/home_browse"}/
         .caption
           %h2 Browse All Products
@@ -20,13 +31,3 @@
             Not sure where to start? Check out our About page, FAQ, and other
             useful information thats Sfeet!
           = link_to "About Sfeet", about_path, class: "btn btn-primary"
-
-    .col-sm-6.col-md-4.text-center.padding-above
-      .thumbnail.thumbnail-no-border
-        %img{:alt => "Home News", :src => "assets/home_news"}/
-        .caption
-          %h2 Recent News
-          .padding-below
-            Want to stay up to date on the recent news releases about
-            products and brands, follow our news blog.
-          = link_to "Recent News", news_path, class: "btn btn-primary"

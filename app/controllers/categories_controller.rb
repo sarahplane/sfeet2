@@ -5,15 +5,12 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
+    @category = Category.new
   end
 
   def show
     @categories = Category.all
     @tags = Tag.all
-  end
-
-  def new
-    @category = Category.new
   end
 
   def create
@@ -30,6 +27,7 @@ class CategoriesController < ApplicationController
   def edit
   end
 
+
   def update
     if @category.update(category_params)
       flash[:notice] = "Category Updated"
@@ -40,13 +38,13 @@ class CategoriesController < ApplicationController
     end
   end
 
+
   def destroy
-    if @category.destroy
-      flash[:notice] = "Category Deleted"
-    else
-      flash[:alert] = "Category NOT deleted, please try again."
+    @category.destroy
+    respond_to do |format|
+      format.html
+      format.js
     end
-    redirect_to categories_path
   end
 
 private
@@ -67,4 +65,4 @@ private
     end
   end
 
- end
+end
