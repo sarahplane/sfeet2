@@ -19,8 +19,8 @@ class CategoriesController < ApplicationController
       flash[:notice] = "Category successfully added."
       redirect_to categories_path
     else
-      flash.now[:alert] = "Category NOT added, please try again."
-      render :new
+      flash[:alert] = "Category NOT added, please try again."
+      redirect_to categories_path
     end
   end
 
