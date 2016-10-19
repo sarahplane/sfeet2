@@ -1,0 +1,14 @@
+.container-fluid
+  .row.row-centered.padding-above
+    %h2
+      = "Edit '#{@category.name}' Category Name"
+
+    = form_for(@category) do |f|
+      .user-field.margin-below
+        = f.text_field :name, placeholder: "Category Name (Toys, Food ...)"
+
+      .btn.btn-primary.margin-above
+        = f.submit
+
+    %div.button.padding-above
+      = link_to 'Cancel', categories_path
