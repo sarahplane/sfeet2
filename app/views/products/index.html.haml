@@ -33,7 +33,7 @@
                 &#xb7;
                 - if product.category.nil? == false
                   = link_to "#{product.category.name}", category_path(product.category)
-            -if @user.admin? == true
+            -if current_user.admin? == true
               .margin-left.margin-left-less
               = link_to edit_product_path(product), class: "margin-right" do
                 %i.glyphicon.glyphicon-pencil
