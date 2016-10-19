@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:show]
+  before_action :admin_function, only: [:index, :new, :create, :edit, :update, :destroy]
 
   def index
     @categories = Category.all
@@ -55,6 +56,15 @@ private
 
   def set_category
     @category = Category.find(params[:id])
+  end
+
+  def admin_function
+    if current_user.admin?
+      @user = current_user
+    else
+      flash[:alert] = "Sorry You are not authorized to access this page."
+      redirect_to root_path
+    end
   end
 
  end
