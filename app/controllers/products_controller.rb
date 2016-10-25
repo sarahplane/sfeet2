@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
     @products = Product.all
     @tags = Tag.all
     @reviews = Review.all
+    @user = current_user
     if params[:search]
       @products = Product.search(params[:search]).order("created_at DESC")
     else
@@ -19,6 +20,7 @@ class ProductsController < ApplicationController
   def show
     @tags = Tag.all
     @review = Review.new
+    @user = current_user
   end
 
   def new

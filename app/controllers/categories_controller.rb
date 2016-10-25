@@ -11,6 +11,7 @@ class CategoriesController < ApplicationController
   def show
     @categories = Category.all
     @tags = Tag.all
+    @user = current_user
   end
 
   def create
