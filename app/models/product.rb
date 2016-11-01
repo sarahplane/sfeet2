@@ -9,7 +9,12 @@ class Product < ActiveRecord::Base
 
 
   def self.search(search)
-    where("name LIKE ?", "%#{search}%")
+    if search.nil?
+      all.order('created_at DESC')
+    else
+      products = Product.arel_table
+      Product.where(products[:name].matches("%#{search}%")).order("created_at DESC")
+    end
   end
 
   def tag_list

@@ -5,15 +5,10 @@ class ProductsController < ApplicationController
   helper ProductsHelper
 
   def index
-    @products = Product.all
     @tags = Tag.all
     @reviews = Review.all
     @user = current_user
-    if params[:search]
-      @products = Product.search(params[:search]).order("created_at DESC")
-    else
-      @products = Product.all.order('created_at DESC')
-    end
+    @products = Product.search(params[:search])
     render :template => "products/search", :locals => {:products => @products}
   end
 
