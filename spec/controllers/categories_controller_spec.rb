@@ -36,6 +36,7 @@ RSpec.describe CategoriesController, :type => :controller do
         post :create, category
         (nocat.valid?).to_not eq true
       end
+      #refactor away from expect do block!
     end
   end
 

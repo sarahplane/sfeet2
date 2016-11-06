@@ -1,4 +1,5 @@
 class Product < ActiveRecord::Base
+
   has_many :taggings
   has_many :tags, through: :taggings
   has_many :reviews, dependent: :destroy
@@ -13,7 +14,8 @@ class Product < ActiveRecord::Base
       all.order('created_at DESC')
     else
       products = Product.arel_table
-      Product.where(products[:name].matches("%#{search}%")).order("created_at DESC")
+      search_term = sanitize_sql_like(search)
+      Product.where(products[:name].matches("%#{search_term}%")).order("created_at DESC")
     end
   end
 

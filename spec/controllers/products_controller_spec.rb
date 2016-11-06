@@ -8,6 +8,8 @@ RSpec.describe ProductsController, :type => :controller do
   let(:product1) {Product.create(name: "Product1", price: "3")}
   let(:category1){Category.create(name: "Cat1")}
 
+#use a context "for admin user"
+# and set up a before each to sign in user
 
   describe "GET #index" do
     it "succeeds" do
@@ -44,6 +46,7 @@ RSpec.describe ProductsController, :type => :controller do
         post :create, product
         (product1.valid?).to_not eq true
       end
+      #refactor away from expect do block!
     end
   end
 
