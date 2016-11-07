@@ -3,7 +3,7 @@
     %h2
       Add New Product
 
-    = render partial: 'form', locals: {product: @product, price: @price}
+    = render partial: 'form', locals: {product: @product, price: @price, review: @review}
 
     %div.button.padding-above
       = link_to 'Cancel', products_path

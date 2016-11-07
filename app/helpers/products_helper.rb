@@ -7,4 +7,5 @@ module ProductsHelper
     sample = product.reviews.sample
     "#{sample.user.email} - #{sample.comment}"
   end
+  #move this to model
 end
