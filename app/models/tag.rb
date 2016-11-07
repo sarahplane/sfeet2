@@ -1,8 +1,9 @@
 class Tag < ActiveRecord::Base
-   has_many :taggings
-   has_many :products, through: :taggings
+  belongs_to :category
+  has_many :taggings
+  has_many :products, through: :taggings
 
-   validates :name, presence: true, length: { minimum: 2 }, uniqueness: true
+  validates :name, presence: true, length: { minimum: 2 }, uniqueness: true
 
-   scope :sorted, -> {order(:name)}
+  scope :sorted, -> {order(:name)}
  end
