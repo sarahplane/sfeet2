@@ -271,4 +271,9 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
+  config.omniauth :google_oauth2,
+                      ENV['google_oauth_client_idx'],     # use name from Figaro! these names need to be unique so your OS doesn't get confused if have on multiple apps
+                      ENV['google_oauth_client_secretx'], # use name from Figaro!
+                      callback_url: "http://localhost:3000/users/auth/google_oauth2/callback"
 end

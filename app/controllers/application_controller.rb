@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
 
   after_filter :store_action
 
+  def after_sign_in_path_for(resource)
+    request.env['omniauth.origin'] || root_path
+  end
+
   def store_action
     return unless request.get?
     if (request.path != "/users/sign_in" &&
@@ -24,5 +28,7 @@ class ApplicationController < ActionController::Base
   #def after_sign_in_path_for(resource)
   #  session[:previous_url] || root_path
   #end
+
+
 
 end
