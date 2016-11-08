@@ -273,7 +273,12 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
   config.omniauth :google_oauth2,
-                      ENV['google_oauth_client_idx'],     # use name from Figaro! these names need to be unique so your OS doesn't get confused if have on multiple apps
-                      ENV['google_oauth_client_secretx'], # use name from Figaro!
+                      ENV['google_oauth_client_idx'],
+                      ENV['google_oauth_client_secretx'],
                       callback_url: "http://localhost:3000/users/auth/google_oauth2/callback"
+
+  config.omniauth :facebook,
+                  ENV['facebook_app_keyx'],
+                  ENV['facebook_app_secretx'],
+                  callback_url: "http://localhost:3000/users/auth/facebook/callback"
 end
