@@ -275,12 +275,12 @@ Devise.setup do |config|
   config.omniauth :google_oauth2,
                       ENV['google_oauth_client_idx'],
                       ENV['google_oauth_client_secretx'],
-                      callback_url: "google_oauth_callback_url"
+                      callback_url: 'google_oauth_callback_url'
 
 
   config.omniauth :facebook,
                   ENV['facebook_app_keyx'],
                   ENV['facebook_app_secretx'],
-                  callback_url: "facebook_oauth_callback_url"
-                  
+                  callback_url: "https://sfeet2.herokuapp.com/users/auth/facebook/callback"
+
 end
