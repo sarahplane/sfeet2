@@ -10,12 +10,4 @@ class PagesController < ApplicationController
   def faq
   end
 
-  def help_center
-  end
-
-  def news
-  end
-
-  def black_list
-  end
 end
