@@ -275,10 +275,12 @@ Devise.setup do |config|
   config.omniauth :google_oauth2,
                       ENV['google_oauth_client_idx'],
                       ENV['google_oauth_client_secretx'],
-                      callback_url: "http://localhost:3000/users/auth/google_oauth2/callback"
+                      callback_url: "google_oauth_callback_url"
+
 
   config.omniauth :facebook,
                   ENV['facebook_app_keyx'],
                   ENV['facebook_app_secretx'],
-                  callback_url: "http://localhost:3000/users/auth/facebook/callback"
+                  callback_url: "facebook_oauth_callback_url"
+                  
 end
