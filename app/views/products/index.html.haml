@@ -20,7 +20,7 @@
               %h4
                 = link_to "#{product.name}", product
               %br
-              - if product.reviews.empty? == true
+              - if product.reviews.empty?
                 - 5.times do |empty_star|
                   .glyphicon.glyphicon-star-empty
                 No Reviews
@@ -31,7 +31,7 @@
               .margin-below
                 = price_range(product.price)
                 &#xb7;
-                - if product.category.nil? == false
+                - if !product.category.nil?
                   = link_to "#{product.category.name}", category_path(product.category)
             -if @user != nil
               -if current_user.admin?
@@ -42,7 +42,7 @@
                   %i.glyphicon.glyphicon-remove
 
           .panel-body
-            - if product.reviews.empty? == true
+            - if product.reviews.empty?
               %h5
                 Be the first to review this product.
             -else

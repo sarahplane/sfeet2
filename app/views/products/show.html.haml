@@ -4,7 +4,7 @@
       %h2
         = "#{@product.name}"
       .margin-above
-        - if @product.reviews.empty? == true
+        - if @product.reviews.empty?
           - 5.times do |empty_star|
             .glyphicon.glyphicon-star-empty
           No Reviews
@@ -25,7 +25,7 @@
 
   .row
     .col-md-7.col-md-offset-1.padding-abov
-      - if @product.reviews.nil? == false
+      - if !@product.reviews.nil?
         - @product.reviews.each do |review|
           .panel.panel-default
             .panel-heading
