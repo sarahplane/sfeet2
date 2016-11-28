@@ -8,7 +8,6 @@ class Product < ActiveRecord::Base
   validates :name, presence: true, length: { minimum: 2 }, uniqueness: true
 
 
-
   def self.search(search)
     if search.nil?
       all.order('created_at DESC')
