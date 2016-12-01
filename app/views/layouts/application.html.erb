@@ -14,7 +14,9 @@
       <div class="col-md-1">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header navbar-text">
-          <%= link_to image_path("logo.png", alt: 'Brand'), root_path %>
+          <%= link_to root_path do %>
+            <%= image_tag("logo.png", alt: 'Brand') %>
+          <% end %>
         </div>
       </div>
       <div class="col-md-11">
