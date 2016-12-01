@@ -4,7 +4,7 @@ RSpec.describe Product, type: :model do
 
   before (:each) do
     @product = Product.create(name: "Some Product", price: "3")
-    @tags = Tag.create{['yummy item', 'really yummy item', 'healthy item']}
+    @tags = Tag.create{ ['yummy item', 'really yummy item', 'healthy item'] }
   end
 
   context "validation" do

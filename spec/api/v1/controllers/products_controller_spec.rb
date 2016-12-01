@@ -4,7 +4,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
   let(:user) { User.create(email: Faker::Internet.email,
                            password: Faker::Internet.password,
                            api_auth_token: Faker::Internet.password(64, 64)) }
-  let(:product1) {Product.create(name: "Product1", price: "3")}
+  let(:product1) { Product.create(name: "Product1", price: "3") }
 
   context "unauthenticated user" do
     it "can't get index" do

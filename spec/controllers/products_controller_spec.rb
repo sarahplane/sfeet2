@@ -2,8 +2,8 @@ require "rails_helper"
 
 RSpec.describe ProductsController, :type => :controller do
 
-  let(:product1) {Product.create(name: "Product1", price: "3")}
-  let(:category1){Category.create(name: "Cat1")}
+  let(:product1) { Product.create(name: "Product1", price: "3") }
+  let(:category1) { Category.create(name: "Cat1") }
 
 
   context "non-user" do
@@ -44,7 +44,7 @@ RSpec.describe ProductsController, :type => :controller do
     describe "PUT #update" do
       it "successfully updates changed to product" do
         sign_in @admin
-        put :update, :id => product1.id, product: {price: "5"}
+        put :update, :id => product1.id, product: { price: "5" }
         product1.reload
 
         expect(product1.price).to eq "5"
@@ -70,12 +70,12 @@ RSpec.describe ProductsController, :type => :controller do
     end
 
     describe "POST #create" do
-      subject(:creation) {post :create, product: {name: 'Test 123', price: '1', category_id: category1.id}}
+      subject(:creation) { post :create, product: { name: 'Test 123', price: '1', category_id: category1.id } }
 
       it "successfully creates a product" do
         sign_in @user
 
-        expect{creation}.to change{Product.count}.by(1)
+        expect{ creation }.to change{ Product.count }.by(1)
       end
 
       it "raises an error if missing params" do

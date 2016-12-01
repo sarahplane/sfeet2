@@ -4,9 +4,9 @@ RSpec.describe TagsController, :type => :controller do
 
   include Devise::Test::ControllerHelpers
 
-  let(:user) {User.create(email: "admin@user.com", password: "123456", admin: true, password_confirmation: "123456", confirmed_at: Time.now)}
-  let(:product1) {Product.create(name: "Product1", price: "3")}
-  let(:tag) {Tag.create(name: "Tag1")}
+  let(:user) { User.create(email: "admin@user.com", password: "123456", admin: true, password_confirmation: "123456", confirmed_at: Time.now) }
+  let(:product1) { Product.create(name: "Product1", price: "3") }
+  let(:tag) { Tag.create(name: "Tag1") }
 
   describe "DELETE #destroy" do
     it "successfully deletes a tag" do
