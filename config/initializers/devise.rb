@@ -281,9 +281,7 @@ Devise.setup do |config|
   config.omniauth :facebook,
                   ENV['facebook_app_keyx'],
                   ENV['facebook_app_secretx'],
-                  #This is my hack to get the OAuth to work with Heroku. I had to plug in the entire URL
-                  # tried 'facebook_oauth_callback_url' like above in google_oauth2 but couldn't get it to work.
-                  #On localhost, I didn't need the callback_url for either of these and it worked perfectly for both.
-                  callback_url: "https://sfeet2.herokuapp.com/users/auth/facebook/callback"
+                  #This way it won't push to heroku, push fails!
+                  callback_url: 'facebook_omniauth_callback_url'
 
 end
