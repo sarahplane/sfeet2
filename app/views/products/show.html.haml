@@ -24,7 +24,7 @@
               %i.glyphicon.glyphicon-remove
 
   .row
-    .col-md-7.col-md-offset-1.padding-abov
+    .col-md-7.col-md-offset-1.padding-above
       - if !@product.reviews.nil?
         - @product.reviews.each do |review|
           .panel.panel-default
@@ -48,6 +48,11 @@
           .row.margin-left.margin-left-less
             %h4
               Review Product
-        .panel-body
-          .row.margin-left.margin-left-less
-            = render partial: 'reviews/form', locals: {parent: @product, user: @user, review: @review}
+        - if @user != nil
+          .panel-body
+            .row.margin-left.margin-left-less
+              = render partial: 'reviews/form', locals: {parent: @product, user: @user, review: @review}
+        - else
+          .panel-body
+            .row.margin-left.margin-left-less
+              Please Sign In to review a product.
