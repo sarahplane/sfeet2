@@ -2,7 +2,7 @@ class Product < ActiveRecord::Base
 
   has_many :taggings
   has_many :tags, through: :taggings
-  has_many :reviews, dependent: :destroy
+  has_many :reviews, dependent: :destroy, :counter_cache => true
   belongs_to :category
 
   validates :name, presence: true, length: { minimum: 2 }, uniqueness: true

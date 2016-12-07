@@ -72,6 +72,8 @@ group :development do
   gem 'spring'
 
 
-  gem 'loba', require: false, github: 'rdnewman/loba'   # until I published on RubyGems
+  gem 'loba', require: false, github: 'rdnewman/loba'   # until published on RubyGems
+
+  gem "bullet"
 
 end

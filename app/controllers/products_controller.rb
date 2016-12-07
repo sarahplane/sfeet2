@@ -4,9 +4,9 @@ class ProductsController < ApplicationController
 
   def index
     @tags = Tag.all
-    @reviews = Review.all
+    @reviews = Review.includes(:user)
     @user = current_user
-    @products = Product.search(params[:search])
+    @products = Product.includes(:reviews, :category).search(params[:search])
     render :template => "products/search", :locals => {:products => @products}
   end
 
