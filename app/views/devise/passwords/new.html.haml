@@ -1,0 +1,14 @@
+.container-fluid
+  .row.row-centered.padding-above
+    %h2 Forgot your password?
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      - unless devise_error_messages!.blank?
+        .alert.alert-danger.alert-dismissible{:role => "alert"}
+          %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+            %span{"aria-hidden" => "true"} x
+          = devise_error_messages!
+      .user-field.margin-above
+        = f.email_field :email, autofocus: true, placeholder: "Email"
+      .margin-above.btn.btn-primary
+        = f.submit "Send me reset password instructions"
+    = render "devise/shared/links"

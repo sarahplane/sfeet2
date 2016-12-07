@@ -2,6 +2,7 @@ $dark-blue: #0D47A1;
 $green: #4CAF50;
 $off-white: #F5F5F5;
 $off-black: #212121;
+$red: #a94442;
 
 $nav-background-color: $dark-blue;
 $nav-secondary-color: $green;
@@ -12,6 +13,7 @@ $nav-accent-color: $off-black;
 $primary-text: $dark-blue;
 $secondary-text: $green;
 $accent-text: $off-white;
+$alert-text: $red;
 
 .thumbnail{
   &.thumbnail-no-border {
@@ -177,4 +179,18 @@ select#product_category_id{
   border: 1px solid #bbb;
   border-radius: 3.5px;
   padding: .4em;
+}
+
+.no-deco-link {
+  a{
+    text-decoration: none;
+  }
+}
+
+.alert-danger {
+  h2 {
+    color: $alert-text;
+    font-size: 15px;
+  }
+
 }
