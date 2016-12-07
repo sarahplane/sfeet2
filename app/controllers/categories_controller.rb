@@ -9,6 +9,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @products = @category.products
     @categories = Category.all
     @tags = Tag.all
     @user = current_user

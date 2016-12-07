@@ -4,8 +4,10 @@
       .col-md-10.col-md-offset-1
         %h2
           = "#{@tag.name.capitalize}"
-        = link_to tag_path(@tag), method: :delete, data: {confirm: "Are you sure you want to delete #{@tag.name}?"} do
-          %i.glyphicon.glyphicon-remove
+        -if @user != nil
+          -if current_user.admin?
+            = link_to tag_path(@tag), method: :delete, data: {confirm: "Are you sure you want to delete #{@tag.name}?"} do
+              %i.glyphicon.glyphicon-remove
         %h5.margin-above
           Tags:
       .col-md-10.col-md-offset-1.col-count-7
@@ -13,50 +15,4 @@
           = link_to "#{tag.name.capitalize}", tag_path(tag)
           %br
 
-  .row
-    .col-md-7.col-md-offset-1.padding-above
-      - if @tag.products.empty?
-        %h4
-          = "There are no products listed with '#{@tag.name.capitalize}' tag."
-      - else
-        - @tag.products.each do |product|
-          .panel.panel-default
-            .panel-heading
-              .row.margin-left.margin-left-less
-                %h4
-                  = link_to "#{product.name}", product
-                %br
-                - if product.reviews.empty?
-                  - 5.times do |empty_star|
-                    .glyphicon.glyphicon-star-empty
-                  No Reviews
-                -else
-                  - rating_average(product.reviews).to_i.times do |star|
-                    .glyphicon.glyphicon-star
-              .row.margin-left.margin-left-less
-                .margin-below
-                  = price_range(product.price)
-                  &#xb7;
-                  - if !product.category.nil?
-                    = link_to product.category.name, category_path(product.category)
-                -if current_user.admin?
-                  .margin-left.margin-left-less
-                  = link_to edit_product_path(product), class: "margin-right" do
-                    %i.glyphicon.glyphicon-pencil
-                  = link_to product_path(product), method: :delete, data: {confirm: "Are you sure you want to delete #{product.name}?"} do
-                    %i.glyphicon.glyphicon-remove
-            .panel-body
-              - if product.reviews.empty?
-                %h5
-                  Be the first to review this product.
-              -else
-                = review_sample(product)
-
-
-    .col-md-3.padding-above
-      .thumbnail.thumbnail-thick-boarder
-        .caption
-          %h3 Add a Product
-          Don't see what you are looking for? Add a new product!
-          .padding-below
-          = link_to 'Add Product', new_product_path, class: "btn btn-primary"
+= render partial: 'products/product_listing', locals: {user: @user, products: @products, empty_msg: "There are no products listed with '#{@tag.name.capitalize}' tag."}
