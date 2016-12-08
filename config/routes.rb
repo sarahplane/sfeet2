@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :products do
     resources :reviews, only: [:create]
   end
-  resources :tags, only: [:show, :destroy]
+  resources :tags, only: [:show, :edit, :update, :destroy]
   resources :categories
 
   controller :pages do
