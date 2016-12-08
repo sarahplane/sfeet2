@@ -4,19 +4,19 @@ var cancelEditCategory = function(category_id) {
 
 var editCategory = function(category_id) {
   setTimeout(function() {
-      $('#category-row-' + category_id).find('.category-show').fadeOut(200);
-  }, 100);
+      $('#category-row-' + category_id).find('.category-show').fadeOut(100);
+  }, 200);
   setTimeout(function() {
-    $('#category-row-'+ category_id).find('.category-edit').fadeIn(200);
+    $('#category-row-'+ category_id).find('.category-edit').fadeIn(100);
   }, 400);
 };
 
 var showCategory = function(category_id) {
   setTimeout(function() {
-      $('#category-row-' + category_id).find('.category-edit').fadeOut(200);
-  }, 100);
+      $('#category-row-' + category_id).find('.category-edit').fadeOut(100);
+  }, 200);
 
   setTimeout(function() {
-    $('#category-row-'+ category_id).find('.category-show').fadeIn(200);
-  }, 300);
+    $('#category-row-'+ category_id).find('.category-show').fadeIn(100);
+  }, 400);
 };

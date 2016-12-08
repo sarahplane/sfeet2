@@ -35,16 +35,9 @@ class CategoriesController < ApplicationController
 
 
   def update
-    # if @category.update(category_params)
-    #   flash[:notice] = "Category Updated"
-    #   redirect_to categories_path
-    # else
-    #   flash.now[:alert] = "Category NOT updated, please try again."
-    #   render :edit
-    # end
     if @category.update(category_params)
       respond_to do |format|
-        format.html
+        format.html { head :bad_request}
         format.js
       end
     else
