@@ -78,22 +78,20 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   require 'rubygems' if RUBY_VERSION < '1.9'
-  require 'rest_client'
+
   require 'json'
 
-  response = RestClient.get "https://mailtrap.io/api/v1/inboxes.json?api_token=6703039303a2fb4f20ff19eb9227a638"
-
-  first_inbox = JSON.parse(response)[0]
 
   config.action_mailer.default_url_options = { :host => 'sfeet2.herokuapp.com' }
 
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-  :user_name => 'a4208d08c2b425',
-  :password => '04928f878a9bcd',
-  :address => 'mailtrap.io',
-  :domain => 'mailtrap.io',
-  :port => '2525',
-  :authentication => :cram_md5
+  :user_name => ENV['SENDGRID_USERNAME'],
+  :password => ENV['SENDGRID_PASSWORD'],
+  :address => 'smtp.sendgrid.net',
+  :domain => 'sfeet2.herokuapp.com',
+  :port => '587',
+  :authentication => :plain,
+  :enable_starttls_auto => true
   }
 end
