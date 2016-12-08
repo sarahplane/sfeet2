@@ -1,9 +1,10 @@
 .container-fluid
   .row.gray
-    .row-header
+    .row-header-small
       .col-md-10.col-md-offset-1
         %h2
           Categories Inventory
+
   .row
     .col-md-7.col-md-offset-1.padding-above
       - @categories.each do |category|
@@ -11,15 +12,16 @@
           .panel.panel-default
             .panel-heading
               .row.margin-left.margin-left-less
-                %h5
-                  = category.name
-                .margin-left.margin-left-less
-                = link_to edit_category_path(category), class: "margin-right" do
-                  %i.glyphicon.glyphicon-pencil
-
-                = link_to category_path(category), method: :delete, data: {confirm: "Are you sure you want to delete #{category.name}?"}, remote: true do
-                  %i.glyphicon.glyphicon-remove
-
+                .category-show
+                  %h5
+                    = category.name
+                  = link_to '','#', onclick: "editCategory(#{category.id})", class: 'glyphicon glyphicon-pencil'
+                  = link_to '', category_path(category), method: :delete, data: {confirm: "Are you sure you want to delete #{category.name}?"}, class: 'glyphicon glyphicon-remove', remote: true
+                .category-edit
+                  = form_for category, remote: true do |pf|
+                    = pf.text_field :name, placeholder: "#{category.name}"
+                    = pf.submit "Update", class: 'btn btn-primary'
+                    = link_to "cancel", '#', onclick: "cancelEditCategory(#{category.id})", class: 'cancel-edit-category-link'
 
   .row
     .col-md-7.col-md-offset-1.padding-above

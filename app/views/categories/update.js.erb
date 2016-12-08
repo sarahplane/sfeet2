@@ -1,0 +1,16 @@
+var category_id = <%= @category.id %>;
+var category_content = '<%= @category.name %>';
+$('#category-row-' + category_id).find('.category-show').html(category_content);
+
+showCategory(category_id)
+
+// $('#category-row-' + category_id).find('.category-show').html(category_content);
+//
+// setTimeout(function() {
+//     $('#category-row-' + category_id).find('.category-edit').fadeOut(200);
+// }, 100);
+//
+// setTimeout(function() {
+//   $('#category-row-'+ category_id).find('.category-show').fadeIn(200);
+// }, 300);
+// // showCategory(category_id);

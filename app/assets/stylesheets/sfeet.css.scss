@@ -149,6 +149,10 @@ $alert-text: $red;
   max-height: 250px;
 }
 
+.row-header-small {
+  max-height: 60px;
+}
+
 .row-centered {
   text-align: center;
 }
@@ -192,5 +196,13 @@ select#product_category_id{
     color: $alert-text;
     font-size: 15px;
   }
+}
 
+
+.category-edit {
+  display: none;
+}
+
+.category-show {
+  display: inline-block;
 }

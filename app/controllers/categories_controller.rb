@@ -27,16 +27,28 @@ class CategoriesController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html { head :bad_request}
+      format.js
+    end
   end
 
 
   def update
+    # if @category.update(category_params)
+    #   flash[:notice] = "Category Updated"
+    #   redirect_to categories_path
+    # else
+    #   flash.now[:alert] = "Category NOT updated, please try again."
+    #   render :edit
+    # end
     if @category.update(category_params)
-      flash[:notice] = "Category Updated"
-      redirect_to categories_path
+      respond_to do |format|
+        format.html
+        format.js
+      end
     else
-      flash.now[:alert] = "Category NOT updated, please try again."
-      render :edit
+      Rails.logger.info 'failed to update'
     end
   end
 
