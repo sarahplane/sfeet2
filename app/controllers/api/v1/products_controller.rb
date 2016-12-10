@@ -13,7 +13,7 @@ class Api::V1::ProductsController < Api::V1::BaseController
   def create
     @product = Product.new(product_params)
     @product.tag_list=(params[:tag_list])
-    @category_id = Category.find(params[:category_id])
+    @product.category = Category.find(params[:category_id])
 
     if @product.save
       render json: { status: 201, message: "Product successfully added."}.to_json
