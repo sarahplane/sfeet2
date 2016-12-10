@@ -281,8 +281,6 @@ Devise.setup do |config|
   config.omniauth :facebook,
                   ENV['facebook_app_keyx'],
                   ENV['facebook_app_secretx'],
-                  #This way it won't push to heroku, push fails!
-                  # callback_url: 'facebook_omniauth_callback_url'
-                  callback_url: ENV['SERVER_ROOT']+'/users/auth/facebook/callback'
+                  callback_url: facebook_omniauth_callback_url
 
 end
