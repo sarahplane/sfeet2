@@ -1,0 +1,64 @@
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-1">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header navbar-text">
+          <%= link_to root_path do %>
+            <%= image_tag("logo.png", alt: 'Brand') %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-11">
+        <div class= "row padding-left">
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <%= form_tag(products_path, :method => "get", id: "search-form", class: "navbar-form navbar-left navbar-text") do %>
+            <div class="form-group">
+              <div class= "margin-below">
+                <%= text_field_tag :search, params[:search], placeholder: "Search Product Name", class: "user-field form-control" %>
+                <button class= "btn btn-default">
+                  <%= submit_tag "Search" %>
+              </div>
+            </div>
+          <% end %>
+
+          <% if current_user %>
+            <div class= "navbar-text">
+            <%= "#{current_user.email} is signed in"%>
+            <button class="btn btn-default">
+              <%= link_to 'Signout', destroy_user_session_path,method: :delete %></div>
+          <% else %>
+            <div class="btn btn-default navbar-text">
+              <%= link_to "Sign Up", new_user_registration_path %></div>
+            <div class="btn btn-default navbar-text">
+              <%= link_to "Sign In", new_user_session_path %></div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav margin-left">
+            <li><%= link_to "Home", root_path %></li>
+              <span class="sr-only">(current)</span></li>
+            <li><%= link_to "Products", products_path %></li>
+            <li><%= link_to "About", about_path %></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <% Category.all.each do |category| %>
+                  <li><%= link_to "#{category.name}", category_path(category) %></li>
+                <% end %>
+                <% if current_user && current_user.admin? %>
+                  <li><%= link_to "Categories Inventory", categories_path %></li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+  </div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>
