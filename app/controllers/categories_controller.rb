@@ -9,8 +9,8 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @products = @category.products
-    @categories = Category.all
+    @products = @category.products.includes(:reviews)
+    @categories = Category.all.includes(:reviews)
     @tags = Tag.all
     @user = current_user
   end

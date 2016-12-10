@@ -3,7 +3,7 @@ class TagsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
 
   def show
-    @products = @tag.products
+    @products = @tag.products.includes(:reviews, :category)
     @tags = Tag.all
     @user = current_user
   end
