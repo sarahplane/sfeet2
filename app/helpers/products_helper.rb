@@ -4,8 +4,8 @@ module ProductsHelper
   end
 
   def review_sample(product)
-    sample = product.reviews.sample
+    sample = product.reviews.includes(:user).sample
     "#{sample.user.email} - #{sample.comment}"
   end
-  
+
 end
