@@ -281,6 +281,6 @@ Devise.setup do |config|
   config.omniauth :facebook,
                   ENV['facebook_app_keyx'],
                   ENV['facebook_app_secretx'],
-                  callback_url: facebook_omniauth_callback_url
+                  callback_url: 'https://sfeet2.herokuapp.com/users/auth/facebook/callback'
 
 end
