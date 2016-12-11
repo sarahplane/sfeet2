@@ -1,11 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::ProductsController, type: :controller do
+RSpec.describe Api::V1::TagsController, type: :controller do
   let(:user) { User.create(email: Faker::Internet.email,
                            password: Faker::Internet.password,
                            api_auth_token: Faker::Internet.password(64, 64)) }
   let(:product1) { Product.create(name: "Product1", price: "3") }
   let(:category1) { Category.create(name: "Cat1") }
+  let(:tags) { Tag.create(name: "Test1, Test2, Test3")}
+  let(:tag1) { Tag.create(name: "Tag1")}
 
   context "unauthenticated user" do
     it "can't get index" do
@@ -34,22 +36,22 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
       end
 
       it "succeeds" do
-        product1
+        tag1
         get :index
 
-        expect(response.body).to eq [product1].to_json
+        expect(response.body).to eq [tag1].to_json
       end
     end
 
     describe "GET show" do
       it "succeeds" do
-        get :show, id: product1
+        get :show, id: tag1
 
         expect(response).to have_http_status(:ok)
       end
 
       it "response with JSON" do
-        get :show, id: product1
+        get :show, id: tag1
 
         expect(response.content_type).to eq 'application/json'
       end
@@ -63,12 +65,12 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
 
     describe "POST create" do
 
-      it "successfully creates a product" do
-        expect{ post :create, {"product": {"name": "testgwgwgw", "price": "2"}, "tag_list": "test, test1, test3", "category_id": "#{category1.id}"}, format: JSON}.to change{ Product.count }.by(1)
+      it "successfully creates a tag" do
+        expect{ post :create, {"tag": {"name": "tagtag"}}, format: JSON}.to change{ Tag.count }.by(1)
       end
 
       it "succeeds" do
-        post :create, {"product": {"name": "test123123123", "price": "2"}, "tag_list": "test, test1, test3", "category_id": "#{category1.id}"}, format: JSON
+        post :create, {"tag": {"name": "tagtag"}}, format: JSON
 
         expect(response).to have_http_status(:ok)
       end
@@ -80,42 +82,42 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
       end
 
       it "returns an error when paramaters missing" do
-        Product.create(name: "testgwgwgw", price: "2")
-        post :create, {"product": {"name": "testgwgwgw", "price": "2"}, "tag_list": "test, test1, test3", "category_id": "#{category1.id}"}, format: JSON
+        Tag.create(name: "tagtag")
+        post :create, {"tag": {"name": "tagtag"}}, format: JSON
 
-        expect(response.body).to include ("Product NOT added")
+        expect(response.body).to include ("Tag NOT added")
       end
     end
 
     describe "PUT update" do
 
-      it "successfully updates a product" do
-        product1
-        put :update, {"product": {"name": "UpdatedProduct", "price": "2"}, "tag_list": "test, test1, test3", "category_id": "#{category1.id}", "id": "#{product1.id}"}, format: JSON
-        product1.reload
+      it "successfully updates a tag" do
+        tag1
+        put :update, {"tag": {"name": "tagUpdate"}, "id": "#{tag1.id}"}, format: JSON
+        tag1.reload
 
-        expect(product1.name).to eq("UpdatedProduct")
+        expect(tag1.name).to eq("tagUpdate")
       end
 
       it "returns an error when paramaters missing" do
-        product1
-        Product.create(name: "UpdatedProduct", price: "2")
-        put :update, {"product": {"name": "UpdatedProduct", "price": "2"}, "tag_list": "test, test1, test3", "category_id": "#{category1.id}", "id": "#{product1.id}"}, format: JSON
-        product1.reload
+        tag1
+        Tag.create(name: "tagtest")
+        put :update, {"tag": {"name": "tagtest"}, "id": "#{tag1.id}"}, format: JSON
+        tag1.reload
 
-        expect(response.body).to include ("Product NOT updated")
+        expect(response.body).to include ("Tag NOT updated")
       end
     end
 
     describe "DELETE destroy" do
 
-      it "successfully deletes a product" do
-        delete :destroy, {"product": {"name": "UpdatedProduct", "price": "2"}, "tag_list": "test, test1, test3", "category_id": "#{category1.id}", "id": "#{product1.id}"}, format: JSON
+      it "successfully deletes a tag" do
+        delete :destroy, {"tag": {"name": "tagUpdate"}, "id": "#{tag1.id}"}, format: JSON
 
-        expect(Product.count).to eq 0
+        expect(Tag.count).to eq 0
       end
 
     end
-
+    
   end
 end
